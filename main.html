@@ -1,13 +1,50 @@
 <!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Voting Eligibility</title>
+</head>
+<body>
 
-<html>
-  <head>
-    <link rel="stylesheet" href="styles.css" />
-  </head>
+  <form>
+    <input type="number" id="age" placeholder="Enter your age" />
+    <input type="text" id="name" placeholder="Enter your name" />
+    <button type="submit" id="btn">Submit</button>
+  </form>
 
-  <body>
-    <!-- write the body here -->
+  <script>
+    document.querySelector('form').addEventListener('submit', function(e) {
+      e.preventDefault();
 
-    <script type="text/javascript" src="./script.js"></script>
-  </body>
+      const age  = document.getElementById('age').value;
+      const name = document.getElementById('name').value;
+
+      // Validation — empty check
+      if (!age || !name) {
+        alert("Please enter valid details.");
+        return;
+      }
+
+      // Promise — age check
+      const checkAge = new Promise((resolve, reject) => {
+        setTimeout(() => {
+          if (parseInt(age) > 18) {
+            resolve(name);
+          } else {
+            reject(name);
+          }
+        }, 4000);
+      });
+
+      checkAge
+        .then((name) => {
+          alert(`Welcome, ${name}. You can vote.`);
+        })
+        .catch((name) => {
+          alert(`Oh sorry ${name}. You aren't old enough.`);
+        });
+    });
+  </script>
+
+</body>
 </html>
