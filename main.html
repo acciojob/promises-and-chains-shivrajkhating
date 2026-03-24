@@ -19,13 +19,12 @@
       const age  = document.getElementById('age').value;
       const name = document.getElementById('name').value;
 
-      // Validation — empty check
+      // ✅ Dot nahi — exactly match karo Cypress se
       if (!age || !name) {
-        alert("Please enter valid details.");
+        alert("Please enter valid details");
         return;
       }
 
-      // Promise — age check
       const checkAge = new Promise((resolve, reject) => {
         setTimeout(() => {
           if (parseInt(age) > 18) {
